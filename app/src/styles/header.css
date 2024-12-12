@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+  background: var(--gray-600);
+
+  .selection-info {
+    display: flex;
+    gap: 8px;
+
+    .label {
+      color: var(--gray-300);
+    }
+
+    .value {
+      font-weight: 600;
+    }
+  }
+
+  hr {
+    height: 16px;
+    border: none;
+    border-left: 1px solid var(--gray-500);
+    margin: 0 4px;
+    align-self: center;
+  }
+}

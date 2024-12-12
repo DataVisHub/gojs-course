@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Family Tree Builder</title>
+  </head>
+  <body>
+      <header class="header">
+        <button id="save-button">Save</button>
+        <button id="load-button">Load</button>
+        <hr>
+        <button id="add-girl-button">It's a girl</button>
+        <button id="add-boy-button">It's a boy</button>
+        <hr>
+        <button id="export-to-png-button">Export to PNG</button>
+        <button id="export-to-svg-button">Export to SVG</button>
+        <hr>
+        <button id="toggle-groups-button">Toggle Groups</button>
+        <hr>
+        <button id="undo-button">Undo</button>
+        <button id="redo-button">Redo</button>
+        <hr>
+        <div class="selection-info">
+          <span class="label">Currently selected:</span>
+          <span id="selected-person" class="value"></span>
+        </div>
+      </header>
+      <div class="content">
+        <div id="palette" class="palette">{Palette}</div>
+        <div class="diagram-container">
+          <div id="diagram" class="diagram">{Diagram}</div>
+          <div id="tooltip" class="tooltip">
+            <div>
+              <span class="label">From:</span>
+              <span id="tooltip-from"></span>
+            </div>
+            <div>
+              <span class="label">To:</span>
+              <span id="tooltip-to"></span>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  </body>
+</html>

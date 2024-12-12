@@ -1,0 +1,20 @@
+button {
+  all: unset;
+  display: inline-flex;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  border-radius: 5px;
+  border: 1px solid var(--gray-400);
+
+  &:hover {
+    border-color: var(--gray-200);
+  }
+
+  &:disabled {
+    border-color: var(--gray-500);
+    color: var(--gray-400);
+    cursor: auto;
+  }
+}

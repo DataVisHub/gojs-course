@@ -1,0 +1,4 @@
+textarea {
+  all: unset;
+  background: var(--gray-900);
+}

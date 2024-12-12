@@ -1,0 +1,6 @@
+.palette {
+  width: 128px;
+  border-right: 1px solid var(--gray-600);
+  background: var(--gray-700);
+  box-sizing: border-box;
+}

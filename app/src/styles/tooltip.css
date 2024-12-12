@@ -1,0 +1,32 @@
+.tooltip {
+  display: none;
+  position: absolute;
+  background: var(--gray-900);
+  border: 1px solid var(--gray-600);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px var(--shadow);
+  z-index: 2;
+  border-radius: 5px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease-in-out;
+
+  span {
+    font-size: 11px;
+  }
+
+  & .label {
+    font-weight: 600;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    border-top: 10px solid var(--gray-600);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    bottom: -10px;
+    margin-left: 5px;
+    left: 0;
+  }
+}
