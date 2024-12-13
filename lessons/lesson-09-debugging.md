@@ -310,7 +310,7 @@ browser extension here at Synergy Codes.
 
 Let's install it and go through a couple of its features.
 
-You can find the extension here TODO//LINK
+You can find the extension here https://www.synergycodes.com/community 
 
 After you've installed it and opened developer tools, you should see a GoJS tab.
 
