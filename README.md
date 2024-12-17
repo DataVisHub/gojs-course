@@ -53,7 +53,7 @@ It offers features such as:
 It's worth to mention, that this library comes with TypeScript support for improved developing experience.
 
 ## Table of Contents
-[Lesson 0: Setting up the project](lessons/lesson-0-project-setup-and-intro.md)  
+[Lesson 0: Project Setup and Introduction](lessons/lesson-0-project-setup-and-intro.md)  
 
 [Lesson 1: Creating your first GoJS diagram](lessons/lesson-01-diagram-instance.md)  
 [Lesson 2: Family members representation - node templates](lessons/lesson-02-node-templates.md)  
