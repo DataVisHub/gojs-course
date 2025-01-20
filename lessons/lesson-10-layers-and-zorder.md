@@ -7,9 +7,9 @@ Any 2D visualization environment introduces the concept of z-ordering—deciding
 ## What you'll learn
 
 * What are GoJS's Layers and zOrder
-* What you can use them for, and for what you can't
-* How Layers are utilized by the library other features
-* How to implement simple feature using them
+* What you can use them for, and what you can't
+* How Layers are utilized by the library's other features
+* How to implement simple features using them
 
 ## GoJS Layers
 
@@ -19,7 +19,7 @@ GoJS incorporates the concept of [Layers](https://gojs.net/latest/api/symbols/La
 
 It might be tempting to use GoJS's **zOrder** concept to control which shape is displayed on top of another within a node template. However, **GoJS's Layers and zOrder apply only at the part level**—meaning you can adjust the zOrder of an entire Part (Node or Link), but not an individual GraphObject within that part.  
 
-For individual GraphObjects within a template, the rendering order is determined by the structure of the template and the order in which the shapes are defined or added programmatically. In cases where shapes overlap within the same panel, the shape defined later in the template (or added later) will appear on top of the earlier ones.  
+For individual GraphObjects within a template, the rendering order is determined by the structure of the template and the order in which the shapes are defined or added programmatically. In cases where shapes overlap within the same panel, a shape defined later in the template (or added later) will appear on top of the earlier ones.  
 
 Layers, on the other hand, offer properties that can be customized to affect all parts in the layer. This provides a way to easily control the appearance and behavior of multiple nodes or links simultaneously.  
 
@@ -27,11 +27,11 @@ Layers, on the other hand, offer properties that can be customized to affect all
 
 Let's see an example and implement it in our app:
 
-In previous lessons, we created group templates to organize parts of the royal family. Now, let’s implement a toggle that allows us to hide the groups themselves while keeping their member nodes visible. This can be particularly useful when generating an image of the diagram — a feature we explored in Lesson 8 of this course.
+In previous lessons, we created group templates to organize parts of the royal family. Now, let's implement a toggle that allows us to hide the groups themselves while keeping their member nodes visible. This can be particularly useful when generating an image of the diagram — a feature we explored in Lesson 8 of this course.
 
-One way to control the visibility of all groups is by assigning them to a specific layer and modifying that layer’s properties.
+One way to control the visibility of all groups is by assigning them to a specific layer and modifying that layer's properties.
 
-First, let's create a new Layer on the diagram by adding `addLayers.ts` file in
+First, let's create a new layer on the diagram by adding an `add-layers.ts` file in
 the `diagram` directory with the following contents:
 
 ```typescript
@@ -110,14 +110,14 @@ window.addEventListener("load", () => {
 });
 ```
 
-Now if you click the "Toggle Groups" button you might see something interesting. Instead of
-hiding just the group themselves, group contents also disappeared.
+Now if you click the "Toggle Groups" button, you might see something interesting. Instead of
+hiding just the group themselves, the group contents have also disappeared.
 
 ![group-content-missing](../assets/lesson-10/layers-1.png)
 
 Does this mean that nodes inside the group ended up on the group layer we just hid? Actually, no. This behavior relates to how GoJS groups function. When the visibility of a group changes, it also affects all members of its subgraph, even if those members are drawn on a different layer.
 
-To achieve our goal of hiding only the groups while keeping their nodes visible, we need a different approach. Let’s modify the code in the toggle function:
+To achieve our goal of hiding only the groups while keeping their nodes visible, we need a different approach. Let's modify the code in the toggle function:
 
 ```typescript
 //toggle-groups.ts
@@ -127,7 +127,7 @@ export const toggleGroups = (diagram: go.Diagram) => {
   groupLayer.opacity = groupLayer.opacity ? 0 : 1;
 };
 ```
-Opacity is another property we can adjust, which applies to all parts on a layer. In this case, it’s exactly what we need. Modifying the opacity ensures the group remains under the nodes, allowing us to interact with it - for instance, to grab and move it. While this behavior might be undesirable in some scenarios, it works well for our goal of hiding groups for image export purposes.
+Opacity is another property we can adjust, which applies to all parts on a layer. In this case, it's exactly what we need. Modifying the opacity ensures the group remains under the nodes, allowing us to interact with it - for instance, to grab and move it. While this behavior might be undesirable in some scenarios, it works well for our goal of hiding groups for image export purposes.
 
 ![groups-hidden](../assets/lesson-10/layers-2.png)
 
@@ -154,7 +154,7 @@ In GoJS, each part has a [zOrder](https://gojs.net/latest/api/symbols/Part.html#
 
 As a result, the rendering order of parts is determined first by the **index of the layer** and then by the **zOrder** of the part within that layer.
 
-When a part’s `zOrder` is not set (i.e., its value remains `NaN`), GoJS guarantees that group parts will always be rendered below their member parts within the same subgraph. However, for two parts overlapping on the same level, GoJS does not guarantee which one will appear on top. In practice, the part that was added to the diagram later will be the one rendered on top.
+When a part's `zOrder` is not set (i.e., its value remains `NaN`), GoJS guarantees that group parts will always be rendered below their member parts within the same subgraph. However, for two parts overlapping on the same level, GoJS does not guarantee which one will appear on top. In practice, the part that was added to the diagram later will be the one rendered on top.
 
 ## Summary
 
@@ -166,10 +166,10 @@ In the app, right now we can drag nodes to make them overlap one another.
 However, since zOrdering hasn't been set in any of the previous features, the
 node on top will usually be the last one added to the diagram.
 
-As a homework, implement following feature:
+For a homework, implement following feature:
 
 When selecting a node, ensure that it is brought to the top of any overlapping nodes and remains on top when the selection changes.
 
-Result should look something like this:
+The result should look something like this:
 
 ![selection-brings-to-top](../assets/lesson-10/layers-3.gif)

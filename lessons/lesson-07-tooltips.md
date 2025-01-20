@@ -1,7 +1,7 @@
 # Tooltips
 
 ## Intro
-In this lesson, we'll focus on a very popular way of providing additional information for some objects in the diagram - tooltips.
+In this lesson, we'll focus on a very popular way of providing additional information for some objects in a diagram - tooltips.
 
 ## Lesson Objectives
 * How to create and use native GoJS tooltips
@@ -9,12 +9,12 @@ In this lesson, we'll focus on a very popular way of providing additional inform
 
 ## Native tooltips in GoJS
 Since it's a common requirement to have tooltips displayed in your diagram,
-GoJS provides us with native support for those.
-To display a tooltip when the user hovers over some objects or even the diagram,
+GoJS provides us with native support for them.
+To display a tooltip when the user hovers over some objects or even the diagram itself,
 we need to assign a `go.Adornment` template to the `tooltip` property available on the `go.GraphObject` or `go.Diagram` class.
 
-We'll have to get a little bit creative when it comes to the additional information to show in our tooltip since we don't have much data in the `data.ts` that has not been yet presented in one form or another. 
-To not modify the data, on hovering over a particular family member, we'll calculate and display the age of that person.
+We'll have to get a little bit creative when it comes to the additional information shown in our tooltip, since we don't have much data in the `data.ts` that has not already been presented in one form or another. 
+To not modify the data, when hovering over a particular family member, we'll calculate and display the age of that person.
 
 To show a native GoJS tooltip when the user hovers over a node, we'll have to create a template of it first.
 
@@ -80,7 +80,7 @@ The default delay for the tooltip to appear is 850 milliseconds, so please be pa
 
 ![Tooltip](../assets/lesson-7/tooltip-1.png)
 
-Great! We can see that our tooltip is working, and the age of Queen Elizabeth II was 96.
+Great! We can see that our tooltip is working, and the age of Queen Elizabeth II was given as 96.
 As we mentioned, once we hovered over the node of Queen Elizabeth II, we had to wait a while before the tooltip showed up. We'd like it to appear a little bit quicker. That's something we'll take care of next.
 
 To make our new tooltip appear on hover faster, we have to modify the `hoverDelay` property available in the `go.ToolManager`. We'll set the `hoverDelay` property in the `diagram.ts` file. Within this file, add the following line:
@@ -96,11 +96,11 @@ export const createDiagram = (diagramDiv: HTMLDivElement) => {
 };
 ```
 We set its value to 100 milliseconds so that the tooltip appears almost immediately after we hover over a node.
-That's it, now let's go back to the browser and verify that the tooltip appears faster than before.
+That's it. Now let's go back to the browser and verify that the tooltip appears faster than before.
 
-GoJS takes care of positioning the tooltip for us, but it's possible to position the tooltip relatively to the objects it's being displayed for. More information about the positioning of the tooltips is available [here](https://gojs.net/latest/intro/toolTips.html#Positioning).
+GoJS takes care of positioning the tooltip for us, but it's possible to position a tooltip relative to the object(s) it's being displayed for. More information about the positioning of tooltips is available [here](https://gojs.net/latest/intro/toolTips.html#Positioning).
 
-Now, let's move to the next section, in which we'll cover a slightly advanced solution in terms of tooltips.
+Now let's move to the next section, in which we'll cover a slightly advanced solution for tooltips.
 
 ## Custom HTML tooltips
 In this section, we'll have a look at custom HTML tooltips that we can use in place of native ones. GoJS allows us to assign a `go.HTMLInfo` object to the `tooltip` property.
@@ -132,7 +132,7 @@ const show = (link: go.Link, diagram: go.Diagram) => {
   tooltip.style.display = "block";
 
   tooltipFrom.innerHTML = (model.findNodeDataForKey(from) as FamilyMember).name;
-  tooltipTo.innerHTML = (model.findNodeDataForKey(from) as FamilyMember).name;
+  tooltipTo.innerHTML = (model.findNodeDataForKey(to) as FamilyMember).name;
 };
 
 const hide = () => {
@@ -147,15 +147,15 @@ export const createCustomHtmlTooltip = () =>
   });
 ```
 There are a couple of things to point out in the code above. To show our custom HTML tooltip,
-we've created the `show` function inside which we've access to the hovered object and the GoJS diagram via functions parameters.
-We use those to calculate the position of the tooltip as well as we're retrieving the names of people connected by the hovered link so that we can display them inside the tooltip. To show the tooltip, we're setting its `display` style to `block` (the initial value is `none`).
+we've created the `show` function, inside which we have access to the hovered object and the GoJS diagram via functions parameters.
+We use those to calculate the position of the tooltip, as we're retrieving the names of people connected by the hovered link so that we can display them inside the tooltip. To show the tooltip, we set its `display` style to `block` (the initial value is `none`).
 To hide our tooltip, we simply set the `display` property back to `none` in the `hide` function.
-At the end, we create `go.HTMLInfo` object and pass the new functions to it.  
+At the end, we create a `go.HTMLInfo` object and pass the new functions to it.  
 
 Note: there are two ways of getting the mouse position: `viewPoint` and `documentPoint`.
-The `viewPoint` contains coordinates based on what part of the diagram is visible to us at the moment.
+`viewPoint` contains coordinates based on what part of the diagram is visible to us at the moment.
 When we move the viewport and place the cursor in the same position within the page as before, we get the same coordinates.
-On the other hand, `documentPoint` contains coordinates based on the diagram's origin point, therefore the same cursor position will result in different coordinates based on what part of the diagram we're focused on. It is possible to transform one coordinate system into another:
+On the other hand, `documentPoint` contains coordinates based on the diagram's origin point; therefore, the same cursor position will result in different coordinates based on what part of the diagram we're focused on. It is possible to transform one coordinate system into another:
 
 - [transformDocToView](https://gojs.net/latest/api/symbols/Diagram.html#transformDocToView)
 - [transformViewToDoc](https://gojs.net/latest/api/symbols/Diagram.html#transformViewToDoc)
@@ -182,11 +182,11 @@ Alright, this should be good to go. Let's go to the browser and check the result
 ![Tooltip](../assets/lesson-7/tooltip-2.png)
 
 Fantastic! The custom HTML tooltip appears in the proper position and displays the information we wanted to show.
-With the custom HTML tooltips, we can utilize the full potential of JavaScript, CSS, and HTML, e.g. we could animate its entrance and exit or maybe fetch some additional data which we want to display within the tooltip.
+With custom HTML tooltips, we can utilize the full potential of JavaScript, CSS, and HTML, e.g. we could animate its entrance and exit, or maybe fetch some additional data that we want to display within the tooltip.
 
 ## Summary
-During this lesson, we've introduced tooltips to our diagram. Tooltips are used to provide additional information on our diagram. GoJS allows us to create tooltips using their built-in solution or create custom HTML tooltips to allow us to utilize the full power of the HTML/CSS/JavaScript.
+During this lesson, we've introduced tooltips to our diagram. Tooltips are used to provide additional information on our diagram. GoJS allows us to create tooltips using the built-in solution or create custom HTML tooltips to allow us to utilize the full power of HTML/CSS/JavaScript.
 
 ## Homework
-As homework, please add smooth entrance and exit animations to our custom tooltip.
+For homework, please add smooth entrance and exit animations to our custom tooltip.
 Fade-in and fade-out animations should be good enough.

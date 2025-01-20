@@ -8,10 +8,10 @@ In this lesson, we'll create our first GoJS diagram.
 * What is a diagram model
 * How to add node and link templates
 * What is a diagram layout
-* How to save and load a diagrams model
+* How to save and load a diagram model
 
 ## Instantiating a GoJS diagram
-Currently our application doesn't look spectacular. Let's spice things up by creating our very first diagram.
+Visually, our application isn’t so hot at the moment. Let's spice things up by creating our very first diagram.
 
 First create a directory named `gojs` in `src`.
 Then in the `gojs` directory add a directory named `diagram` with a file named `diagram.ts`.
@@ -60,7 +60,7 @@ This is indicated by a watermark in the top left corner.
 Great!
 
 One last thing before we go further.
-The `go.GraphObject.make` function is used a lot within GoJS.
+The `go.GraphObject.make` function is used a lot in GoJS.
 To improve readability and speed up development, let's assign it to something shorter.
 A common way is to assign it to a constant variable named `$`.
 
@@ -79,7 +79,9 @@ export const createDiagram = (diagramDiv: HTMLDivElement) => {
 ```
 
 From now on, in the tutorial, we'll stick to this practice. You will shortly see why.
+
 ## Data model
+
 All right! We've successfully created a diagram.
 But other than displaying a watermark, there's not much going on.
 Let's change that quickly by feeding our diagram with some data.
@@ -148,7 +150,7 @@ export const addModel = (diagram: go.Diagram) => {
 Before we add any links, we have to add keys to the nodes.
 Every node has its unique key which we can use to identify them.
 If we don't assign the keys manually, GoJS will generate them for us.
-That wasn't a problem before since we didn't do anything with the nodes, but links need to know what nodes they attach to.
+That wasn't a problem before since we weren’t doing anything with the nodes, but links need to know what nodes they attach to.
 
 Simply replace the current `nodeDataArray` with:
 
@@ -189,8 +191,8 @@ Now we know how to add nodes and links. Let's try to style them a bit.
 ## Templates
 
 Until now, we haven't specified what our nodes and links should look like.
-By default nodes are simple text fields and links are straight arrows. How to create templates will be explained in the next lessons.
-Let's just have a quick glimpse at what they actually are, and how to use them.
+By default nodes are simple text fields, while links are straight arrows. How to create templates will be explained in the next lessons.
+Let's just take a quick look at what they actually are, and how to use them.
 In the `gojs` directory create a new folder named `templates`.
 In that directory create a file named `node-template.ts` and paste this code:
 
@@ -226,12 +228,12 @@ export const createLinkTemplate = () =>
 
 ```
 
-You don't need now to know what all this code means, only that it describes what our nodes and links should look like.
-Also, you can see how assigning `go.GraphObject.make` to something shorter starts to come in handy :).
+You don't need now to know (yet) what all this code means, only that it describes what our nodes and links should look like.
+Also, you can see how assigning `go.GraphObject.make` to something shorter comes in handy :).
 
 To make GoJS use these templates in our app, let's first create a file in the `diagram` directory named `register-templates.ts`.
 
-In that file add:
+In that file, add:
 
 ```typescript
 // register-templates.ts
@@ -301,7 +303,7 @@ More on categories and templates in the next lessons.
 
 ## Layouts
 In this example, we're going to create the British Royal family tree. All data has already been prepared.
-To use them, we have to import them in `add-model.ts` and replace the current data arrays as such:
+To use them, we have to import them in `add-model.ts` and replace the current data arrays like this:
 
 ```typescript
 // add-model.ts
@@ -322,10 +324,10 @@ The app should look like this:
 
 Woah, that's messy. If only we could make the nodes resemble a tree without having to position them manually.
 
-GoJS already has an answer: Layouts.
+GoJS has the answer built in: Layouts.
 
 Layouts take care of positioning the nodes.
-GoJS has many built-in layouts which work well for popular data structures including, you guessed it, trees.
+GoJS has many built-in layouts that work well for popular data structures including - you guessed it - trees.
 
 To get a nice tree, all we have to do is to change the default layout to a `TreeLayout`.
 In the `diagram` directory create a file named `add-layout.ts` and paste in:
@@ -375,12 +377,12 @@ Our result should look like this:
 
 Layouts have a lot of customizability, we can even add custom behaviors by extending any layout class.
 But that's a topic for a separate lesson.
-For more information regarding layouts click [here](https://gojs.net/latest/api/symbols/Layout.html)
+For more information regarding layouts, click [here](https://gojs.net/latest/api/symbols/Layout.html)
 
 ## Saving the diagram
 
 The last thing we will learn today is how to save and load the diagrams model.
-In the `index.ts` let's handle onclick event for save and load buttons:
+In the `index.ts`, let's handle onclick event for save and load buttons:
 
 ```typescript
 // index.ts
@@ -402,7 +404,7 @@ Together with `fromJSON`, saving and loading a model is as simple as it gets.
 Save the diagram, remove a node (with backspace), then load the diagram and you will see that the diagram goes back to its previous state.
 ## Summary
 
-That was a lot!
+Look at everything we just did!
 We went from just a skeleton to having a nice tree representing a real family.
 We learned how to create a diagram, what models and layouts are, how to add templates, and at last how to save the model.
 In the next lesson, we will dive deeper into templates.
