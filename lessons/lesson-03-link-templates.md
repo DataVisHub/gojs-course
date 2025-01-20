@@ -1,16 +1,16 @@
 # Link Templates
 
 ## Intro
-Previously, we've learned how to customize the appearance of a diagram node. During this lesson, we'll customize links.
+In the previous lesson, we learned how to customize the appearance of a diagram node. During this lesson, we'll customize links.
 
 ## What you'll learn
-* How to create a custom look of the diagram link
+* How to create a custom look of a diagram link
 * How to add and style arrowheads
 * How to add, style, and bind link labels
 
 ## GoJS Link Templates Structure
 
-Similar to node templates, link templates must be defined starting with `go.Link` declaration. We've already defined a basic template during the first lesson.
+Similar to node templates, link templates must be defined starting with the `go.Link` declaration. We've already defined a basic template during the first lesson.
 
 ``` javascript
 //link-template.ts
@@ -23,12 +23,12 @@ export const createLinkTemplate = () =>
   );
 ```
 
-As previously, the `go.Link` line tells us that we're dealing with a link template. The object beneath holds properties of the link. The `$(go.Shape)` is responsible for the actual shape of the link.
+As before, the `go.Link` line tells us that we're dealing with a link template. The object beneath holds the properties of the link. The `$(go.Shape)` is responsible for the actual shape of the link.
 
-In the properties section, we can specify the routing type of our links. In our scenario, the best routing is Orthogonal, however, GoJS offers a bunch of useful [routing algorithms](https://gojs.net/latest/intro/links.html#Routing), that you can use in your project.
+In the properties section, we can specify the routing type of our links. In our scenario, the best routing is Orthogonal. However, GoJS offers a bunch of useful [routing algorithms](https://gojs.net/latest/intro/links.html#Routing) that you can use in your project.
 
 
-Having that knowledge, let's split the link template into parts, change the color and apply some smoothness.
+Having that knowledge, let's split the link template into parts, change the color, and apply some smoothness.
 
 ``` javascript
 //link-template.ts
@@ -74,7 +74,7 @@ const arrowHead = () =>
 
 ![Template 2](../assets/lesson-3/link-template-2.png)
 
-In order to get rid of the link fragment, that overflows beyond our arrowhead, we can shorten the link using the `fromShortLength` property.
+In order to get rid of the link fragment that overflows beyond our arrowhead, we can shorten the link using the `fromShortLength` property.
 ``` javascript
 export const createLinkTemplate = () =>
     $(
@@ -94,7 +94,7 @@ After:
 
 ## Link labels and bindings
 
-Just like node templates, link templates support bindings. Let's bind the birth year of the family members to the links.
+Just like node templates, link templates support bindings. Let's bind the birth years of the family members to the links.
 
 ``` javascript
 //link-template.ts
@@ -122,21 +122,21 @@ const birthYear = () =>
   );
 ```
 
-Note, that we've used the `ofObject` binding to retrieve the entire link object.
+Note that we've used the `ofObject` binding to retrieve the entire link object.
 From there we can retrieve information about the node to which the link points and obtain the nodes data.
 
-Another important consideration is that if the `birthYear` changes, the binding won't trigger automatically. This happens because it doesn't depend on the link data and the reference to `toNode` remains unchanged.
+Another important consideration is that if `birthYear` changes, the binding won't trigger automatically. This happens because it doesn't depend on the link data, and the reference to `toNode` remains unchanged.
 To fix that, we would need to update the bindings on connected links manually.
 
 ``` javascript
 link.updateTargetBindings("toNode");
 ```
 
-We'll skip that for now as the birth year won't change, but it's something we should be aware of.
+We'll skip that for now, as the birth year won't change, but it's something we should be aware of.
 
 ![Template 5](../assets/lesson-3/link-template-5.png)
 
-Finally, let's use the knowledge from the previous lesson and add some styling to the birth year block.
+Finally, let's use our knowledge from the previous lesson and add some styling to the birth year block.
 
 ``` javascript
 //link-template.ts
@@ -171,9 +171,9 @@ const birthYear = () =>
   );
 ```
 
-We've wrapped our label in a panel and we've declared a rounded rectangle shape with desired parameters. Next, we've created a text block to fit inside the shape. Finally, we've added a visibility binding that should show the year indicator if the year is defined.
+We've wrapped our label in a panel, and we've declared a rounded rectangle shape with desired parameters. Next, we've created a text block to fit inside the shape. Finally, we've added a visibility binding that should show the year indicator if the year is defined.
 
-To position the label on the link, we've used the `segmentIndex`, `segmentFraction` and `segmentOffset` properties. If you want to dive deeper into link labels please refer to [GoJS docs on link labels](https://gojs.net/latest/intro/linkLabels.html).
+To position the label on the link, we've used the `segmentIndex`, `segmentFraction` and `segmentOffset` properties. If you want to dive deeper into link labels, please refer to [GoJS docs on link labels](https://gojs.net/latest/intro/linkLabels.html).
 
 ![Template 6](../assets/lesson-3/link-template-6.png)
 
@@ -183,5 +183,5 @@ In this lesson, we've learned how to modify the appearance of links and how to b
 
 ## Homework
 
-As homework, change the link line from solid to dashed. Play around with different dash styles.
+For homework, change the link line from solid to dashed. Play around with different dash styles.
 

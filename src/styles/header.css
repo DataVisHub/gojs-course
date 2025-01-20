@@ -9,6 +9,7 @@
   .selection-info {
     display: flex;
     gap: 8px;
+    flex: 1;
 
     .label {
       color: var(--gray-300);
@@ -17,6 +18,11 @@
     .value {
       font-weight: 600;
     }
+  }
+
+  .community-logo,
+  .community-logo img {
+    height: 24px;
   }
 
   hr {

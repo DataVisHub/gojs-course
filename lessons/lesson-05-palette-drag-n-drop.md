@@ -4,16 +4,16 @@
 In the lesson about node templates, we've added the possibility to add new nodes via buttons.
 The problem with this solution is that we first need to scroll to an added node before we want to place it somewhere.
 A better option would be to just drag such a template on the diagram and immediately place it where we want.
-This issue can be resolved using a palette and it's something that we'll focus on in this lesson.
+This issue can be resolved using a palette, which we'll focus on in this lesson.
 
 ## Lesson Objectives
-* How to create the palette which will improve the user experience of adding new nodes.
-* How to create different styles of the same node inside the palette.
-* How to handle adding the nodes to the groups.
+* How to create a palette to improve the user experience of adding new nodes.
+* How to create different styles of the same node inside a palette.
+* How to handle adding nodes to groups.
 
 ## Creating the palette
 If you open the app, you can see that we have a place where we'd like to put our palette.
-Let's move on then and add there our palette.
+Let's add our palette there.
 Firstly, create a new directory called `palette` inside the `gojs` directory, and inside of it add a `palette.ts` file with the code below:
 
 ```typescript
@@ -27,8 +27,8 @@ export const createPalette = (paletteDiv: HTMLDivElement) => {
 };
 ```
 
-Above code looks familiar to what we did while we were creating the diagram, but this time we are using `go.Palette`.
-To watch the result, we need to call this function the same way we did it for the diagram.
+The above code looks familiar, because it’s similar to what we did while we were creating the diagram, but this time we're using `go.Palette`.
+To see the result, we need to call this function the same way we did for the diagram.
 
 ```typescript
 //index.ts
@@ -46,12 +46,12 @@ Add this code under the `createDiagram` call and let's observe the result.
 
 Okay, now it looks almost like there are two diagrams, but the left one is the palette, so it's treated differently by GoJS functionalities.
 On the other hand, both, the diagram, and the palette have a lot in common.
-We'll see the commonalities later in this lesson.
+We'll explore those similarities later in this lesson.
 
 ## Adding elements to the palette
-Once we've created our palette, it'd be good to add there some elements.
+Once we've created our palette, it'd be good to add some elements there.
 This is the first place where we'll see some similarities with the diagram.
-To add elements inside the palette we just need to declare the `nodeDataArray` property, same as for the diagram.
+To add elements inside the palette, we just need to declare the `nodeDataArray` property, the same as for the diagram.
 
 ```typescript
 //palette.ts
@@ -69,13 +69,13 @@ Try to grab it and drag it onto the diagram.
 
 ![Template 2](../assets/lesson-5/palette-template-2.png)
 
-If you did everything properly, our application should look like in the picture above.
-What happened there is while we're dragging the node inside the palette, the task of visualizing such node has been taken by the palette.
-When we dragged it onto the diagram this task has been taken by the diagram.
+If you did everything properly, our application should look like the picture above.
+What happened there is while we're dragging the node inside the palette, the task of visualizing the node has been taken over by the palette.
+When we dragged it onto the diagram, this task was taken over by the diagram.
 That's why the same object looks different in the palette and the diagram.
-It means that we can define a different look of an object depending on whether it's in the palette, or in the diagram which could be useful in some cases.
+It means that we can define a different look for an object depending on whether it's in the palette or in the diagram, which could be useful in some cases.
 
-Let's represent a node for a boy just by the picture of the boy's face.
+Let's represent a node for a boy just using a picture of the boy's face.
 Go to the `templates` directory in which we'll create a `palette-node-template.ts` file.
 If you want, you could try to create this template on your own since it'll reuse some parts from the `node-template.ts` file. If you don't want to do it on your own, just use the code below:
 
@@ -123,9 +123,9 @@ const photo = (size: number = 60) =>
   );
 ```
 
-We won't dive into the code above since, such it was explained during a node templates lesson.
-The main difference here is that we now bind only to a `gender` property to change an image, not the whole data of the object.
-Now we need to assign this template to the `nodeTemplateMap` of the palette. Similarly to what we've done during the lesson on the diagram instance.
+We won't dive into the code above, since it was explained during the node templates lesson.
+The main difference here is that we now bind only to a `gender` property to change the image, not the whole data of the object.
+Now we need to assign this template to the `nodeTemplateMap` of the palette - similarly to what we did in the lesson on the diagram instance.
 
 ```typescript
 //pallete.ts
@@ -141,14 +141,14 @@ export const createPalette = (paletteDiv: HTMLDivElement) => {
 };
 ```
 
-Okay, we've declared a node template, let's save the changes and go to the browser to see if the boy's picture will be displayed in the palette.
+Okay, we've declared a node template; now let's save the changes and go to the browser to see if the boy's picture is displayed in the palette.
 
 ![Template 3](../assets/lesson-5/palette-template-3.png)
 
-Now the node inside the palette tells us more about how the node will look like when we drag it onto the diagram.
+Now the node inside the palette tells us more about how the node will look when we drag it onto the diagram.
 Before we move on, let's make some small adjustments.
-Firstly, let's add `name` property, so when we drop the node onto the diagram we'll see a placeholder for the family member's name.
-Secondarily, we'll add some padding to the palette itself.
+First, let's add a `name` property, so when we drop the node onto the diagram we'll see a placeholder for the family member's name.
+Next, we'll add some padding to the palette itself.
 
 ```typescript
 //palette.ts
@@ -160,13 +160,13 @@ export const createPalette = (paletteDiv: HTMLDivElement) => {
 };
 ```
 
-## Adding the nodes to the groups
-In the previous lesson, we've added groups to our diagram and now we've enabled the option to drag the nodes onto the diagram.
-It'd be nice to connect these two functionalities together and assign the node to the group onto which it has been dropped.
-The question is where to start or where should we take care of such functionality?
-The answer is pretty simple! Such events are being handled by the templates.
-Let's start with creating a utility function that will take care of adding the nodes to the groups.
-Create a new directory called `utils` inside `gojs` and add there `mouse-drop.ts` file.
+## Adding nodes to groups
+In the previous lesson, we added groups to our diagram, and now we've enabled the option to drag the nodes onto the diagram.
+It'd be nice to connect these two functionalities together and assign a node to the group onto which it has been dropped.
+The question is where to start, or where should we take care of this functionality?
+The answer is pretty simple! Such events are handled by templates.
+Let's start with creating a utility function that will manage adding nodes to groups.
+Create a new directory called `utils` inside `gojs`, and add the `mouse-drop.ts` file there.
 
 ```typescript
 //mouse-drop.ts
@@ -180,11 +180,11 @@ export const mouseDrop = (event: go.InputEvent, group: go.Group) => {
 ```
 
 The purpose of the function above is to add the diagram selection to the group by its method called [addMembers](https://gojs.net/latest/api/symbols/Group.html#addMembers).
-It means that when we call this function on e.g. group mouse drop event it'll add such a node (because it's now selected) to the group.
+This means that when we call this function on e.g. group mouse drop event, it'll add the node (because it's now selected) to the group.
 
 The next thing we need to do is to make use of this function.
-As it was mentioned before, these kinds of events can be handled inside templates.
-Let's move to the `group-template.ts`.
+As mentioned before, these kinds of events can be handled inside templates.
+Let's move to `group-template.ts`.
 
 ```typescript
 //group-template.ts
@@ -203,19 +203,19 @@ export const createGroupTemplate = () =>
   );
 ```
 
-The [MouseDrop](https://gojs.net/latest/api/symbols/GraphObject.html#mouseDrop) method is being called every time when we drop something onto the template where we declared it.
-Two first arguments passed by this method are the same as for our util `mouseDrop` function, that's why we are using an object property value shorthand.
-Now if you try to drag the node from the palette onto the group it'll be added at the bottom of the group, not the whole diagram.
+The [MouseDrop](https://gojs.net/latest/api/symbols/GraphObject.html#mouseDrop) method is being called every time we drop something onto the template where we declared it.
+The two first arguments passed by this method are the same as for our util `mouseDrop` function. That's why we are using an object property value shorthand.
+Now if you try to drag the node from the palette onto the group, it'll be added at the bottom of the group, not the whole diagram.
 
 ## Summary
-In this lesson, we've learned how to create and configure the palette.
-It'll allow the user to add new nodes to the diagram using drag & drop.
+In this lesson, we've learned how to create and configure a palette.
+It allows the user to add new nodes to the diagram using drag & drop.
 How to create different templates for the palette and the diagram.
-What's more, we've handled adding new nodes to the groups using the `mouseDrop` event.
+What's more, we've handled adding new nodes to groups using the `mouseDrop` event.
 
 ## Homework
-Try to add the girl template to the palette and a layout, so that the nodes within the palette will be positioned one under another. (Tip: [GridLayout](https://gojs.net/latest/api/symbols/GridLayout.html)
+Try to add the "girl" template to the palette and a layout, so that the nodes within the palette will be positioned one under another. (Tip: [GridLayout](https://gojs.net/latest/api/symbols/GridLayout.html)
 
-When we drop the node onto another node inside some group, the dragged node isn't being added to the group.
+When we drop the node onto another node inside some group, the dragged node isn't added to the group.
 Try to fix this issue. (Tip: reuse `mouseDrop` inside `node-template`).
 

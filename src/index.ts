@@ -1,5 +1,3 @@
-import "./styles.css";
-
 import { pageElements } from "./dom/page-elements";
 
 window.addEventListener("load", () => {
