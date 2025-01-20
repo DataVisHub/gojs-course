@@ -62,7 +62,7 @@ export const registerTemplates = (diagram: go.Diagram) => {
 };
 ```
 
-As you can see declaring a group template, we should see how it looks.
+As you can see declaring a group template works the same way as for nodes and links.
 We just need to assign a new map to `groupTemplateMap` in which we pass our template.
 
 Now that we've registered our group template it'd be good to see how it looks.
