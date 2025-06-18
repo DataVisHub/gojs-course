@@ -14,6 +14,9 @@ If you don't have these tools on your machine, please install them now.
 * [Node.JS and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 * Code editor of your choice
 
+> [!NOTE]
+> Required versions: Node.js v16 or newer, npm v8 or newer
+
 # Project Overview
 
 This project is built with Vite and TypeScript, ensuring efficient module bundling and strong typing support. While we’ve included GoJS as a dependency in `package.json`, it wont't be used just yet. The next lesson will guide you through initializing and setting up your first GoJS diagram.
@@ -50,9 +53,12 @@ The main entry point of the app is `index.ts`. This file includes `pageElements`
 # Testing the Setup
 
 To ensure everything is working, run the following commands:
-1. Install dependencies with `npm install`.
-2. Start the project with `npm run start`.
-3. Open `http://localhost:5173/` in your browser. You should see the app running successfully, indicating that your setup is complete.
+
+1. Clone or download the full repo.
+2. Go to the repo folder that contains `package.json`
+3. Install dependencies with `npm install`.
+4. Start the project with `npm run start`.
+5. Open `http://localhost:5173/` in your browser. You should see the app running successfully, indicating that your setup is complete.
 
 ![UI](../assets/lesson-0/app.png "Family Tree Builder app")
 
